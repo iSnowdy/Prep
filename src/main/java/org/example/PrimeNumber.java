@@ -12,7 +12,7 @@ public class PrimeNumber {
     public static boolean isPrime (int number) {
         // Prime is a whole number > 1 that cannot be divided by any other than itself and 1
         if (number <= 1) return false;
-        for (int i = 2; i <= Math.sqrt(number); i ++) { // Optimizing. Only need to check numbers that are < sqrt(n)
+        for (int i = 2; i <= Math.sqrt(number); i ++) { // Optimizing. Only need to check numbers that are <= sqrt(n)
             if (number % i == 0) return false;
         }
         return true;
