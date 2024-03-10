@@ -1,68 +1,51 @@
-package org.example.arrayCode;
+package org.example.Test;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Objects;
 
 public class CodedMessage {
-    public static int decodeThis (int codedMessage) {
-        int counter = 1;
+    public static int decodeThis(int codedMessage) {
+        int counter = 0;
 
         HashMap<Character, String> mapCode = new HashMap<>();
-        HashSet<Integer> innerCounter = new HashSet<>();
         String a = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z";
         String text = a.replaceAll(" ", "").toLowerCase(Locale.ROOT);
         StringBuilder temp = new StringBuilder();
-        for (int i = 0; i < text.length(); i ++) {
+
+        for (int i = 0; i < text.length(); i++) {
             temp.append(text.charAt(text.length() - 1 - i));
         }
-        for (int i = 0; i < temp.length(); i ++) {
+
+        for (int i = 0; i < temp.length(); i++) {
             mapCode.put(temp.charAt(i), String.valueOf(i + 1));
         }
 
-        // for (char i : mapCode.keySet()) System.out.println("key: " + i + " value: " + mapCode.get(i));
+        String codeString = String.valueOf(codedMessage);
 
-        // Code starts here
-
-        String codeString = Integer.toString(codedMessage);
-        String[] arrayCode = new String[codeString.length()];
-        for (int i = 0; i < codeString.length(); i ++ ) arrayCode[i] = String.valueOf(codeString.charAt(i));
-        System.out.println((arrayCode[0] + arrayCode[1]).getClass());
-
-        for (String value : mapCode.values()) {
-            if (Objects.equals(arrayCode[0], value)){
-                innerCounter.add(1);
-                if (Objects.equals(arrayCode[0] + arrayCode[1], value)) {
-                    innerCounter.add(2);
-                    if (Objects.equals(arrayCode[0] + arrayCode[2], value)) {
-                        innerCounter.add(3);
-                    }
+        // Buscamos todas las posibles combinaciones de descifrado
+        for (int i = 0; i < codeString.length(); i++) {
+            for (int j = 1; j <= 2 && i + j <= codeString.length(); j++) {
+                // Extraer la subcadena del mensaje codificado
+                String subCode = codeString.substring(i, i + j);
+                // Verificar si la subcadena está en el mapa de códigos
+                if (mapCode.containsValue(subCode)) {
+                    // Si la subcadena está en el mapa, incrementar el contador de posibilidades
+                    counter++;
                 }
             }
         }
-
-        for (String value : mapCode.values()) {
-            if (Objects.equals(arrayCode[1], value)){
-                innerCounter.add(4);
-                if (Objects.equals(arrayCode[1] + arrayCode[2], value)) {
-                    innerCounter.add(5);
-                }
-            }
-        }
-
-        System.out.println(innerCounter);
-        System.out.println(innerCounter.size());
-
-
-
         return counter;
     }
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         int codedMessageOne = 111;
         int codedMessageTwo = 111;
         int codedMessageThree = 52459;
 
-        // System.out.println(decodeThis(codedMessageOne));
-        System.out.println(decodeThis(codedMessageTwo));
-        // System.out.println(decodeThis(codedMessageThree));
+        System.out.println("Mensaje " + codedMessageOne + ": " + decodeThis(codedMessageOne));
+        System.out.println("Mensaje " + codedMessageTwo + ": " + decodeThis(codedMessageTwo));
+        System.out.println("Mensaje " + codedMessageThree + ": " + decodeThis(codedMessageThree));
     }
 }
