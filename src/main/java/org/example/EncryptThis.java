@@ -13,7 +13,7 @@ public class EncryptThis {
 
             if (word.length() > 1) {
                 if (word.length() > 2) {
-                    String building =   word.charAt(word.length() -1) +
+                    String building =   word.charAt(word.length() - 1) +
                                         word.substring(2, word.length() - 1) +
                                         word.charAt(1);
                     outputWord.append(building);

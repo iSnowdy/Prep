@@ -1,6 +1,4 @@
 package org.example.Methods;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class BinarySearch {
@@ -32,9 +30,11 @@ public class BinarySearch {
         int indexResultTwo = myBinarySearch(inputArray, keyNumberTwo);
 
         if (indexResultOne >= 0) System.out.println("The number " + keyNumber + " is present in the array. Its position is: " + indexResultOne);
-        if (indexResultOne < 0) System.out.println("The number " + keyNumber + " is not present in the array. If you want to insert it, it should be in the position: " + indexResultOne);
+        if (indexResultOne < 0) System.out.println("The number " + keyNumber + " is not present in the array. If you want to insert it, it should be in the position: "
+                + indexResultOne);
 
         if (indexResultTwo >= 0) System.out.println("The number " + keyNumberTwo + " is present in the array. Its position is: " + indexResultTwo);
-        if (indexResultTwo < 0) System.out.println("The number " + keyNumberTwo + " is not present in the array. If you want to insert it, it should be in the position: " + (-indexResultTwo - 1));
+        if (indexResultTwo < 0) System.out.println("The number " + keyNumberTwo + " is not present in the array. If you want to insert it, it should be in the position: "
+                + (-indexResultTwo - 1));
     }
 }

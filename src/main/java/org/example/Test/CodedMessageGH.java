@@ -47,7 +47,7 @@ public class CodedMessageGH {
     // Driver code
     public static void main(String[] args)
     {
-        char digits[] = { '8', '1', '2'};
+        char digits[] = {'8', '1', '2'};
         int n = digits.length;
         System.out.printf("Count is %d",
                 countWays(digits, n));
